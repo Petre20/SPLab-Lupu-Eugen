@@ -9,7 +9,7 @@ public class Paragraph implements Element{
     }
 
     @Override
-    public void print() {
+    public void render() {
         if (textAlignment == null) {
             System.out.println("Paragraph: " + text);
         } else {
@@ -40,5 +40,10 @@ public class Paragraph implements Element{
 
     public void setAlignStrategy(AlignStrategy textAlignment) {
         this.textAlignment = textAlignment;
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 }

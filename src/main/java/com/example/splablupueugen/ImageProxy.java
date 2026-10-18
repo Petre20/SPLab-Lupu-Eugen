@@ -9,12 +9,12 @@ public class ImageProxy implements Element{
     }
 
     @Override
-    public void print() {
+    public void render() {
         if (realImage == null) {
             realImage = new Image(imageName);
         }
 
-        realImage.print();
+        realImage.render();
     }
 
     @Override
@@ -30,5 +30,10 @@ public class ImageProxy implements Element{
     @Override
     public Element get(int index) {
         throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 }

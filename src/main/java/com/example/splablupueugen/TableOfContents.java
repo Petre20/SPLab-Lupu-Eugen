@@ -1,10 +1,23 @@
 package com.example.splablupueugen;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TableOfContents implements Element {
 
+    List<String> entries = new ArrayList<>();
+
+    public void addEntry(String entry) {
+        entries.add(entry);
+    }
+
     @Override
-    public void print() {
-        System.out.println("Table of Contents");
+    public void render() {
+        System.out.println("Table of Contents:");
+
+        for (String entry : entries) {
+            System.out.println(entry);
+        }
     }
 
     @Override
@@ -20,5 +33,10 @@ public class TableOfContents implements Element {
     @Override
     public Element get(int index) {
         throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 }
