@@ -16,7 +16,7 @@ public class Image implements Element{
     }
 
     @Override
-    public void print() {
+    public void render() {
         System.out.println("Image with name:" + imageName);
     }
 
@@ -33,5 +33,10 @@ public class Image implements Element{
     @Override
     public Element get(int index) {
         throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 }

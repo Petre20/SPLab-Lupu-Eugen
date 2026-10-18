@@ -8,50 +8,24 @@ public class SpLabLupuEugenApplication {
 
     public static void main(String[] args) {
         //SpringApplication.run(SpLabLupuEugenApplication.class, args);
-        long startTime = System.currentTimeMillis();
 
-        ImageProxy img1 = new ImageProxy("Pamela Anderson");
-        ImageProxy img2 = new ImageProxy("Kim Kardashian");
-        ImageProxy img3 = new ImageProxy("Kirby Griffin");
+        Book book = new Book("Cartea mea");
 
-        Section playboyS1 = new Section("Front Cover");
-        playboyS1.add(img1);
+        Section cap1 = new Section("Capitolul 1");
+        Section cap11 = new Section("Capitolul 1.1");
+        Section cap2 = new Section("Capitolul 2");
 
-        Section playboyS2 = new Section("Summer Girls");
-        playboyS2.add(img2);
-        playboyS2.add(img3);
+        cap1.add(cap11);
 
-        Book playboy = new Book("Playboy");
-        playboy.addContent(playboyS1);
-        playboy.addContent(playboyS2);
+        book.addContent(cap1);
+        book.addContent(cap2);
 
-        long endTime = System.currentTimeMillis();
+        GenerateToC generateToC = new GenerateToC();
 
-        System.out.println(
-                "Creation of the content took " +
-                        (endTime - startTime) +
-                        " milliseconds"
-        );
+        book.accept(generateToC);
 
-        startTime = System.currentTimeMillis();
-        playboyS1.print();
-        endTime = System.currentTimeMillis();
-
-        System.out.println(
-                "Printing of the section 1 took " +
-                        (endTime - startTime) +
-                        " milliseconds"
-        );
-
-        startTime = System.currentTimeMillis();
-        playboyS1.print();
-        endTime = System.currentTimeMillis();
-
-        System.out.println(
-                "Printing again the section 1 took " +
-                        (endTime - startTime) +
-                        " milliseconds"
-        );
+        TableOfContents toc = generateToC.getToC();
+        toc.render();
     }
 
 }

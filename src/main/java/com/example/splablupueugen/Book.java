@@ -20,7 +20,7 @@ public class Book extends Section {
     }
 
     @Override
-    public void print() {
+    public void render() {
         System.out.println("Book:");
 
         System.out.println("Authors:");
@@ -28,6 +28,15 @@ public class Book extends Section {
             author.print();
         }
 
-        super.print();
+        System.out.println(title);
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+
+        for (Element element : children) {
+            element.accept(visitor);
+        }
     }
 }
