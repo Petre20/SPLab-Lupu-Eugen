@@ -1,7 +1,12 @@
 package com.example.splablupueugen;
 
+import com.example.splablupueugen.diexamples.ClientComponent;
+import com.example.splablupueugen.diexamples.SingletonComponent;
+import com.example.splablupueugen.diexamples.TransientComponent;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
 public class SpLabLupuEugenApplication {
@@ -9,23 +14,30 @@ public class SpLabLupuEugenApplication {
     public static void main(String[] args) {
         //SpringApplication.run(SpLabLupuEugenApplication.class, args);
 
-        Book book = new Book("Cartea mea");
+        ApplicationContext context = SpringApplication.run(SpLabLupuEugenApplication.class, args);
 
-        Section cap1 = new Section("Capitolul 1");
-        Section cap11 = new Section("Capitolul 1.1");
-        Section cap2 = new Section("Capitolul 2");
+        TransientComponent transientBean =
+                context.getBean(TransientComponent.class);
+        transientBean.operation();
 
-        cap1.add(cap11);
+        transientBean =
+                context.getBean(TransientComponent.class);
+        transientBean.operation();
 
-        book.addContent(cap1);
-        book.addContent(cap2);
+        SingletonComponent singletonBean =
+                context.getBean(SingletonComponent.class);
+        singletonBean.operation();
 
-        GenerateToC generateToC = new GenerateToC();
+        singletonBean =
+                context.getBean(SingletonComponent.class);
+        singletonBean.operation();
 
-        book.accept(generateToC);
+        ClientComponent c =
+                context.getBean(ClientComponent.class);
+        c.operation();
 
-        TableOfContents toc = generateToC.getToC();
-        toc.render();
+        c = (ClientComponent) context.getBean("clientComponent");
+        c.operation();
     }
 
 }
