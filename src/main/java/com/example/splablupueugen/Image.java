@@ -1,9 +1,13 @@
 package com.example.splablupueugen;
 
 import java.util.concurrent.TimeUnit;
+import jakarta.persistence.Entity;
 
-public class Image implements Element{
+@Entity
+public class Image extends BaseElement{
     private String imageName;
+
+    public Image(){}
 
     public Image(String imageName) {
         this.imageName = imageName;

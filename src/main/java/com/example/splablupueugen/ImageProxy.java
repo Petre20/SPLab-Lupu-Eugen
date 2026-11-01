@@ -1,9 +1,15 @@
 package com.example.splablupueugen;
 
-public class ImageProxy implements Element{
+import jakarta.persistence.Entity;
+import jakarta.persistence.Transient;
+
+@Entity
+public class ImageProxy extends BaseElement {
     private String imageName;
+    @Transient
     private Image realImage;
 
+    public ImageProxy() {}
     public ImageProxy(String imageName) {
         this.imageName = imageName;
     }
