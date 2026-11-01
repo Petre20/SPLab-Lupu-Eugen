@@ -1,9 +1,15 @@
 package com.example.splablupueugen;
 
-public class Paragraph implements Element{
-    private String text;
-    private AlignStrategy textAlignment;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Transient;
 
+
+@Entity
+public class Paragraph extends BaseElement {
+    private String text;
+    @Transient
+    private AlignStrategy textAlignment;
+    public Paragraph(){}
     public Paragraph(String text){
         this.text=text;
     }
@@ -45,5 +51,9 @@ public class Paragraph implements Element{
     @Override
     public void accept(Visitor visitor) {
         visitor.visit(this);
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 }

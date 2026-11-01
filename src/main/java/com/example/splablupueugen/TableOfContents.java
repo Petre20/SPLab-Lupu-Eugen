@@ -1,11 +1,19 @@
 package com.example.splablupueugen;
 
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Entity;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class TableOfContents implements Element {
+@Entity
+public class TableOfContents extends BaseElement {
 
-    List<String> entries = new ArrayList<>();
+    @ElementCollection
+    private List<String> entries = new ArrayList<>();
+
+    public TableOfContents() {
+    }
 
     public void addEntry(String entry) {
         entries.add(entry);

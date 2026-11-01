@@ -2,11 +2,17 @@ package com.example.splablupueugen;
 
 import java.util.ArrayList;
 import java.util.List;
+import jakarta.persistence.Entity;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.OneToMany;
 
-public class Section implements Element{
+@Entity
+public class Section extends BaseElement {
     protected String title;
-    protected List<Element> children=new ArrayList<>();
+    @OneToMany(targetEntity = BaseElement.class, cascade = CascadeType.ALL)
+    protected List<Element> children = new ArrayList<>();
 
+    public Section(){}
     public Section(String title){
         this.title=title;
     }
@@ -43,5 +49,13 @@ public class Section implements Element{
         for (Element element : children) {
             element.accept(visitor);
         }
+    }
+
+    public List<Element> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<Element> children) {
+        this.children = children;
     }
 }
