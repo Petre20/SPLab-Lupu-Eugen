@@ -3,6 +3,7 @@ package com.example.splablupueugen.controllers;
 import com.example.splablupueugen.Book;
 import com.example.splablupueugen.services.BooksService;
 import org.springframework.web.bind.annotation.*;
+import com.example.splablupueugen.observer.AllBooksSubject;
 
 import java.util.List;
 
@@ -11,9 +12,11 @@ import java.util.List;
 public class BooksController {
 
     private final BooksService booksService;
+    private final AllBooksSubject allBooksSubject;
 
-    public BooksController(BooksService booksService) {
+    public BooksController(BooksService booksService, AllBooksSubject allBooksSubject) {
         this.booksService = booksService;
+        this.allBooksSubject = allBooksSubject;
     }
 
     @GetMapping
@@ -28,6 +31,8 @@ public class BooksController {
 
     @PostMapping
     public Book addBook(@RequestBody Book book) {
-        return booksService.save(book);
+        Book savedBook = booksService.save(book);
+        allBooksSubject.add(savedBook);
+        return savedBook;
     }
 }

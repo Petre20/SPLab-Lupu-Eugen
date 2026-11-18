@@ -18,7 +18,7 @@ public class HelloController {
         this.client2 = client2;
     }
 
-    @GetMapping("/")
+    @GetMapping("/hello")
     public String hello() {
         return "Client 1 = " + client1 +
                 "<br>Client 2 = " + client2;
