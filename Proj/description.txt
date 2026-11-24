@@ -1,0 +1,21 @@
+Football Training Planner
+
+The project will be a web application for creating, organizing and analyzing football training plans.
+
+The application will manage hierarchical training data using the following structure:
+
+TrainingPlan -> TrainingWeek -> TrainingSession -> [TechnicalDrill, TacticalDrill, PhysicalDrill, RecoveryActivity, CoachNote]
+
+A TrainingPlan can contain multiple TrainingWeeks. Each TrainingWeek can contain multiple TrainingSessions, while each TrainingSession can contain different types of football training activities.
+
+The application will provide a RESTful API implemented using Spring Boot and will use a database for persistence.
+
+Main functionality:
+- Add training plans, training weeks, training sessions and training activities.
+- View the complete hierarchical structure of a training plan.
+- Generate summaries for a training plan, including the number of weeks, sessions and activities, total training duration and the distribution of activities by type.
+- Store and retrieve training plans from the database.
+
+A simple web interface will allow the user to create and browse training plans and view their summaries.
+
+The project will use design patterns studied during the semester. The Composite pattern will be used to represent the hierarchical structure of training plans, weeks, sessions and activities. The Visitor pattern will be used to traverse the training structure and generate statistics and summaries without adding this logic directly to the model classes.
